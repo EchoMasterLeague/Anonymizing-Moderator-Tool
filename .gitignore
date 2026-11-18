@@ -1,0 +1,24 @@
+# Never publish operational credentials or user data
+.env
+.env.*
+!.env.example
+.secrets/
+**/.secrets/
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.bak
+*.bak-*
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+logs/
+*.log
+*.zip
+*.7z
+*.tar
+*.gz
+.DS_Store
