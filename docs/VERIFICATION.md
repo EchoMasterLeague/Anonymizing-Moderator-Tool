@@ -2,20 +2,13 @@
 
 **Snapshot date:** 2026-11-17
 
-## Source and test identity
+## Component-specific test evidence
 
-| Evidence | Reported / observed result |
+| Evidence | Reported result |
 |---|---|
-| RC1.2b application source commit | `dfdcccb` |
-| Separate harness repair commit (accepted) | `588da4977bf6688251cabea43861722106cf1d16` |
-| DEV branch synchronization | `origin/dev` and local HEAD matched at `588da4977bf6688251cabea43861722106cf1d16` in the verified preflight |
-| RC1.2b DEV candidate Docker tag | `eml-discord-bot:dev-anon-ticket-rc1-2b` |
-| RC1.2b DEV candidate image ID | `sha256:98746e583f08ee4b7853ba01f2ff8e0aaf205212723e15116b9e6ebdc0dd7545` |
-| Dedicated feature regression | **61/61 PASS** |
-| Separate baseline / candidate disciplinary regression | **673/673 PASS** in each image |
-| Corrected isolated general regression | **837/837 PASS**, no errors or failures |
+| Dedicated Anonymous Ticket Reply feature tests (seven test modules) | **61/61 PASS** in accepted DEV verification |
 
-The general-suite count increased after fixing test discovery. **837 is the accepted collected count**, not 13 newly added behavioral requirements. The 837-test run mounted three accepted test-only corrections into an isolated RC1.2b candidate container. Do not imply the candidate image itself had been rebuilt with the harness repairs.
+The 61-test result applies to this feature's dedicated automated tests. It is not evidence of exhaustive Discord permission coverage or every possible live Ticket Tool configuration. The production demonstration below provides separate, limited operational evidence.
 
 ## PROD operational verification (Nov 17, 2026)
 

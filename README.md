@@ -19,8 +19,7 @@ A Board or Commissioner performs a **one-time** `/ticket_reply_center_setup` sla
 - [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md) — environment settings and Ticket Tool panel role configuration.
 - [`docs/OPERATIONS.md`](docs/OPERATIONS.md) — setup, dashboard use and failure recovery.
 - [`docs/SECURITY.md`](docs/SECURITY.md) — authorization, anonymity and audit state machine.
-- [`docs/VERIFICATION.md`](docs/VERIFICATION.md) — accepted regression and operational demonstration evidence.
-- [`SOURCE_MANIFEST.json`](SOURCE_MANIFEST.json) — provenance and SHA-256 hashes for the nine Python files.
+- [`docs/VERIFICATION.md`](docs/VERIFICATION.md) — dedicated feature-test results and production demonstration evidence.
 
 ## Quick integration summary
 
