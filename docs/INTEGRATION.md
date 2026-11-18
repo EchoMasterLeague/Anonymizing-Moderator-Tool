@@ -1,20 +1,20 @@
-# Integrating into the EML bot
+# Integrating into an existing Discord bot
 
 ## Runtime prerequisites
 
-This component was implemented within the existing EML Python/`discord.py` application. Reuse the project's established interpreter, dependency lock, bot startup, and Compose configuration; this repository alone is **not runnable**.
+This component originated in EML's Python/`discord.py` application. It requires an existing `discord.py` bot, compatible dependencies, and Discord/Ticket Tool configuration. This repository alone is **not runnable**.
 
-The module locations match their locations in the EML repository:
+The public repository uses this layout:
 
 ```text
-src/eml-bot-arena/utils/anonymous_ticket_reply.py
-src/eml-bot-arena/utils/anonymous_ticket_reply_core.py
-src/eml-bot-arena/tests/test_anonymous_ticket_reply_*.py
+utils/anonymous_ticket_reply.py
+utils/anonymous_ticket_reply_core.py
+tests/test_anonymous_ticket_reply_*.py
 ```
 
 ## Registration
 
-In the EML application's existing `src/eml-bot-arena/main.py`, the accepted integration imports the adapter and registers it on the existing bot:
+Copy or merge the two files from `utils/` into the host bot's importable `utils` package. In the host bot's startup module, import the adapter and register it on the existing bot:
 
 ```python
 from utils import anonymous_ticket_reply
@@ -23,7 +23,7 @@ from utils import anonymous_ticket_reply
 anonymous_ticket_reply.register(bot)
 ```
 
-The existing bot startup calls `bot.tree.sync()` to publish the one-time `/ticket_reply_center_setup` command. The component installs five additional Discord event listeners; it does not replace the bot's existing event handlers. Do not create a second bot process, duplicate command sync, or run a separate SQL authority.
+The host bot must call `bot.tree.sync()` to publish the one-time `/ticket_reply_center_setup` command. The component installs five additional Discord event listeners; it does not replace the bot's existing event handlers. Do not create a second bot process or duplicate command synchronization.
 
 Registration is disabled unless `EML_ANON_TICKET_REPLIES_ENABLED=1`. See [CONFIGURATION.md](CONFIGURATION.md).
 
@@ -37,10 +37,10 @@ Registration is disabled unless `EML_ANON_TICKET_REPLIES_ENABLED=1`. See [CONFIG
 
 ## Tests
 
-Seven dedicated test files are included. They were accepted as **61/61** in the EML DEV environment. These tests depend on portions of the EML runtime/test harness and may not run as a standalone suite outside that environment. The audit-layout test is the corrected package-import variant from the accepted harness repair.
+Seven dedicated test files are included, with **61/61** accepted in EML DEV verification. From the repository root, run `python -m unittest discover -s tests -p "test_anonymous_ticket_reply_*.py"` to execute the component tests. Some environments may need the host bot's development dependencies or test mocks.
 
-This repo is a **reference implementation snapshot**, not a substitute for the originating EML Git commit or the full regression environment.
+This repo is a **reference component**, not an executable Discord bot or a substitute for testing an integration in its target server.
 
 ## Future changes
 
-Make improvements first in the authoritative EML application repository under Supervisor/Owner governance, test there, and then publish an explicitly versioned update to this reference repository. Do not deploy directly from this repository without separate approval.
+For EML production, changes still require approval and validation in the private operational bot repository before deployment. Third-party integrations should perform their own compatibility, permission, and end-to-end testing.

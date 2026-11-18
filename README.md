@@ -2,7 +2,7 @@
 
 **Status:** RC1.2b reference component (November 17, 2026).
 **Scope:** Anonymous moderator replies in Ticket Tool-generated **League Support** tickets.
-**Not a standalone bot:** This is a component extracted from the existing EML Discord bot. It requires integration into the EML application and its installed `discord.py` dependencies.
+**Not a standalone bot:** This is a reusable component extracted from the EML Discord bot. It requires an existing Python/`discord.py` bot and configuration for that server; the EML application is not included.
 
 ## What it does
 
@@ -12,9 +12,9 @@ A Board or Commissioner performs a **one-time** `/ticket_reply_center_setup` sla
 
 ## Repository layout
 
-- [`src/eml-bot-arena/utils/anonymous_ticket_reply.py`](src/eml-bot-arena/utils/anonymous_ticket_reply.py) — Discord interaction adapter, persistent dashboard, delivery, audit, permission gates.
-- [`src/eml-bot-arena/utils/anonymous_ticket_reply_core.py`](src/eml-bot-arena/utils/anonymous_ticket_reply_core.py) — configuration and validation logic independent of Discord.
-- [`src/eml-bot-arena/tests/`](src/eml-bot-arena/tests/) — seven feature-test modules; 61 tests in accepted DEV verification.
+- [`utils/anonymous_ticket_reply.py`](utils/anonymous_ticket_reply.py) — Discord interaction adapter, persistent dashboard, delivery, audit, permission gates.
+- [`utils/anonymous_ticket_reply_core.py`](utils/anonymous_ticket_reply_core.py) — configuration and validation logic independent of Discord.
+- [`tests/`](tests/) — seven feature-test modules; 61 tests in accepted DEV verification.
 - [`docs/INTEGRATION.md`](docs/INTEGRATION.md) — exact registration points and integration boundaries.
 - [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md) — environment settings and Ticket Tool panel role configuration.
 - [`docs/OPERATIONS.md`](docs/OPERATIONS.md) — setup, dashboard use and failure recovery.
@@ -23,7 +23,7 @@ A Board or Commissioner performs a **one-time** `/ticket_reply_center_setup` sla
 
 ## Quick integration summary
 
-The existing EML bot calls `anonymous_ticket_reply.register(bot)` **after bot construction and before** its established `bot.tree.sync()` startup workflow. The feature is disabled by default unless `EML_ANON_TICKET_REPLIES_ENABLED=1` and all required IDs and permissions are correctly configured. See [integration](docs/INTEGRATION.md) and [configuration](docs/CONFIGURATION.md) for details.
+Place the two `utils/` modules on the host bot's Python import path. Import `from utils import anonymous_ticket_reply` and call `anonymous_ticket_reply.register(bot)` **after bot construction and before** `bot.tree.sync()`. The feature is disabled by default unless `EML_ANON_TICKET_REPLIES_ENABLED=1` and all required IDs and permissions are correctly configured. See [integration](docs/INTEGRATION.md) and [configuration](docs/CONFIGURATION.md) for details.
 
 **Do not paste this snapshot over a live MAIN/PROD deployment.** Follow the EML release and rollback procedures. This repository preserves the reviewed RC1.2b component, not the entire running bot.
 
