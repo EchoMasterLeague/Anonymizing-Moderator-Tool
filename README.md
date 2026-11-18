@@ -30,7 +30,7 @@ The existing EML bot calls `anonymous_ticket_reply.register(bot)` **after bot co
 
 ## Evidence and limitations
 
-The accepted DEV evidence includes **61/61 feature tests** and **837/837 isolated general regression tests** (with the separately corrected test harness). A November 17, 2026 production demonstration showed a new Ticket Tool-generated ticket appearing in the dashboard, a bot-authored `EML Support` message in the ticket, and a private audit recording delivery and the moderator identity. This does **not** prove all future permissions or an exhaustive negative-access confidentiality test. See [verification](docs/VERIFICATION.md).
+The accepted DEV evidence includes **61/61 dedicated feature tests**. A November 17, 2026 production demonstration showed a new Ticket Tool-generated ticket appearing in the dashboard, a bot-authored `EML Support` message in the ticket, and a private audit recording delivery and the moderator identity. This does **not** prove all future permissions or an exhaustive negative-access confidentiality test. See [verification](docs/VERIFICATION.md).
 
 ## Security and publication
 
